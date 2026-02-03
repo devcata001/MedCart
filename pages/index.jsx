@@ -23,7 +23,7 @@ const products = [
     },
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1584467735871-8e85fceb2951?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop",
         title: "Professional Stethoscope",
         description: "Dual head, premium quality",
         price: 15000,
@@ -33,7 +33,7 @@ const products = [
     },
     {
         id: 3,
-        image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=400&h=300&fit=crop",
         title: "Premium Lab Coat",
         description: "100% cotton, all sizes",
         price: 8500,
