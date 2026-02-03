@@ -7,22 +7,7 @@ import CartItem from "../components/CartItem";
 import Input from "../components/Input";
 
 // Mock cart data
-const initialCartItems = [
-    {
-        id: 1,
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop",
-        name: "Gray's Anatomy (42nd Edition)",
-        price: 28500,
-        quantity: 1,
-    },
-    {
-        id: 2,
-        image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=400&h=300&fit=crop",
-        name: "Professional Stethoscope",
-        price: 15000,
-        quantity: 2,
-    },
-];
+const initialCartItems = [];
 
 export default function Cart() {
     const [cartItems, setCartItems] = useState(initialCartItems);
