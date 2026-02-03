@@ -12,7 +12,7 @@ import CategoryCard from "../components/CategoryCard";
 const products = [
     {
         id: 1,
-        image: "https://placehold.co/400x300?text=Grays+Anatomy",
+        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop",
         title: "Gray's Anatomy (42nd Edition)",
         description: "Essential anatomy reference",
         price: 28500,
@@ -23,7 +23,7 @@ const products = [
     },
     {
         id: 2,
-        image: "https://placehold.co/400x300?text=Stethoscope",
+        image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop",
         title: "Professional Stethoscope",
         description: "Dual head, premium quality",
         price: 15000,
@@ -33,7 +33,7 @@ const products = [
     },
     {
         id: 3,
-        image: "https://placehold.co/400x300?text=Lab+Coat",
+        image: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop",
         title: "Premium Lab Coat",
         description: "100% cotton, all sizes",
         price: 8500,
@@ -43,7 +43,7 @@ const products = [
     },
     {
         id: 4,
-        image: "https://placehold.co/400x300?text=Dissection+Kit",
+        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&h=300&fit=crop",
         title: "Dissection Kit (12-piece)",
         description: "Complete anatomy tools",
         price: 12000,

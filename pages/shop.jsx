@@ -11,7 +11,7 @@ import { ProductGridSkeleton } from "../components/LoadingSkeleton";
 const allProducts = [
     {
         id: 1,
-        image: "https://placehold.co/400x300?text=Grays+Anatomy",
+        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop",
         title: "Gray's Anatomy (42nd Edition)",
         description: "Essential anatomy reference",
         price: 28500,
@@ -25,7 +25,7 @@ const allProducts = [
     },
     {
         id: 2,
-        image: "https://placehold.co/400x300?text=Stethoscope",
+        image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop",
         title: "Professional Stethoscope",
         description: "Dual head, premium quality",
         price: 15000,
@@ -37,7 +37,7 @@ const allProducts = [
     },
     {
         id: 3,
-        image: "https://placehold.co/400x300?text=Lab+Coat",
+        image: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop",
         title: "Premium Lab Coat",
         description: "100% cotton, all sizes",
         price: 8500,
@@ -49,7 +49,7 @@ const allProducts = [
     },
     {
         id: 4,
-        image: "https://placehold.co/400x300?text=Dissection+Kit",
+        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&h=300&fit=crop",
         title: "Dissection Kit (12-piece)",
         description: "Complete anatomy tools",
         price: 12000,
@@ -61,7 +61,7 @@ const allProducts = [
     },
     {
         id: 5,
-        image: "https://placehold.co/400x300?text=Vitamin+D3",
+        image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop",
         title: "Vitamin D3 Supplement",
         description: "Supports immune health",
         price: 4500,
@@ -73,7 +73,7 @@ const allProducts = [
     },
     {
         id: 6,
-        image: "https://placehold.co/400x300?text=Focus+Capsules",
+        image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400&h=300&fit=crop",
         title: "Focus & Memory Capsules",
         description: "Natural nootropic blend",
         price: 6500,
@@ -84,7 +84,7 @@ const allProducts = [
     },
     {
         id: 7,
-        image: "https://placehold.co/400x300?text=Stress+Relief+Tea",
+        image: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&h=300&fit=crop",
         title: "Stress Relief Tea",
         description: "Calming herbal blend",
         price: 3200,
@@ -95,7 +95,7 @@ const allProducts = [
     },
     {
         id: 8,
-        image: "https://placehold.co/400x300?text=Flashcards",
+        image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=300&fit=crop",
         title: "Study Flashcards Set",
         description: "500+ medical terms",
         price: 5500,
