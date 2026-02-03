@@ -47,7 +47,6 @@ export default function Checkout() {
     }, [isAuthenticated, cartItems.length, router, currentStep]);
 
     const formatPrice = (amount) => `₦${amount.toLocaleString()}`;
-    ];
 
     const subtotal = getCartTotal();
     const shipping = cartItems.length > 0 ? 2500 : 0;
