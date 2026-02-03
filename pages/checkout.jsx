@@ -1,15 +1,17 @@
 // pages/checkout.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Stepper from "../components/Stepper";
+import { useCart } from "../context/CartContext";
 
 const steps = ["Shipping Info", "Payment", "Review Order", "Confirmation"];
 
 export default function Checkout() {
     const router = useRouter();
+    const { cartItems, isAuthenticated, getCartTotal, clearCart } = useCart();
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         // Shipping Info
@@ -32,26 +34,23 @@ export default function Checkout() {
     const [orderNumber, setOrderNumber] = useState("");
     const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
-    const formatPrice = (amount) => `₦${amount.toLocaleString()}`;
+    // Check authentication on mount
+    useEffect(() => {
+        if (!isAuthenticated) {
+            alert("⚠️ Please login to access checkout");
+            router.push("/auth/login");
+        }
+        if (cartItems.length === 0 && currentStep === 1) {
+            alert("⚠️ Your cart is empty");
+            router.push("/cart");
+        }
+    }, [isAuthenticated, cartItems.length, router, currentStep]);
 
-    // Mock cart data
-    const cartItems = [
-        {
-            id: 1,
-            name: "Gray's Anatomy (42nd Edition)",
-            price: 28500,
-            quantity: 1,
-        },
-        {
-            id: 2,
-            name: "Professional Stethoscope",
-            price: 15000,
-            quantity: 2,
-        },
+    const formatPrice = (amount) => `₦${amount.toLocaleString()}`;
     ];
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shipping = 2500;
+    const subtotal = getCartTotal();
+    const shipping = cartItems.length > 0 ? 2500 : 0;
     const total = subtotal + shipping;
 
     const handleInputChange = (e) => {
@@ -104,6 +103,9 @@ export default function Checkout() {
                 setOrderNumber(orderNum);
                 setIsProcessingPayment(false);
                 setCurrentStep(4);
+
+                // Clear the cart after successful payment
+                clearCart();
 
                 // Show success notification
                 alert(`✅ Payment Successful!\n\nOrder Number: ${orderNum}\n\nThis is a demo payment. In production, this will integrate with Paystack or Stripe.`);

@@ -5,9 +5,11 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Input from "../../components/Input";
+import { useCart } from "../../context/CartContext";
 
 export default function Register() {
     const router = useRouter();
+    const { login } = useCart();
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -49,7 +51,18 @@ export default function Register() {
         // TODO: Implement actual registration API call
         setTimeout(() => {
             setIsLoading(false);
-            router.push("/auth/login");
+            // Store user data and set authentication
+            const userData = {
+                email: formData.email,
+                name: formData.fullName,
+                phone: formData.phone,
+                studentId: formData.studentId,
+                institution: formData.institution,
+            };
+            localStorage.setItem("medcart_user", JSON.stringify(userData));
+            login(userData);
+            alert("✅ Registration successful! Welcome to MedCart!");
+            router.push("/");
         }, 1500);
     };
 

@@ -1,32 +1,27 @@
 // pages/cart.jsx
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CartItem from "../components/CartItem";
 import Input from "../components/Input";
-
-// Mock cart data
-const initialCartItems = [];
+import { useCart } from "../context/CartContext";
 
 export default function Cart() {
-    const [cartItems, setCartItems] = useState(initialCartItems);
+    const router = useRouter();
+    const { cartItems, updateQuantity, removeFromCart, getCartTotal, isAuthenticated } = useCart();
     const [couponCode, setCouponCode] = useState("");
     const [appliedCoupon, setAppliedCoupon] = useState(null);
 
     const formatPrice = (amount) => `₦${amount.toLocaleString()}`;
 
     const handleUpdateQuantity = (id, newQuantity) => {
-        if (newQuantity < 1) return;
-        setCartItems(items =>
-            items.map(item =>
-                item.id === id ? { ...item, quantity: newQuantity } : item
-            )
-        );
+        updateQuantity(id, newQuantity);
     };
 
     const handleRemoveItem = (id) => {
-        setCartItems(items => items.filter(item => item.id !== id));
+        removeFromCart(id);
     };
 
     const handleApplyCoupon = () => {
@@ -38,8 +33,17 @@ export default function Cart() {
         }
     };
 
+    const handleProceedToCheckout = () => {
+        if (!isAuthenticated) {
+            alert("⚠️ Please login or create an account to proceed with checkout");
+            router.push("/auth/login");
+        } else {
+            router.push("/checkout");
+        }
+    };
+
     // Calculate totals
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const subtotal = getCartTotal();
     const discount = appliedCoupon ? subtotal * appliedCoupon.discount : 0;
     const shipping = subtotal >= 50000 ? 0 : 2500;
     const total = subtotal - discount + shipping;
@@ -152,11 +156,12 @@ export default function Cart() {
                                     </div>
 
                                     {/* Checkout Button */}
-                                    <Link href="/checkout">
-                                        <button className="w-full bg-blue-600 text-white py-4 px-8 rounded-lg font-semibold text-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl">
-                                            Proceed to Checkout
-                                        </button>
-                                    </Link>
+                                    <button
+                                        onClick={handleProceedToCheckout}
+                                        className="w-full bg-blue-600 text-white py-4 px-8 rounded-lg font-semibold text-lg hover:bg-blue-700 transition shadow-lg hover:shadow-xl"
+                                    >
+                                        Proceed to Checkout
+                                    </button>
 
                                     {/* Trust Badges */}
                                     <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">

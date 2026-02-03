@@ -8,15 +8,16 @@ import RatingStars from "../../components/RatingStars";
 import ProductCard from "../../components/ProductCard";
 import Tooltip from "../../components/Tooltip";
 import { ProductDetailSkeleton } from "../../components/LoadingSkeleton";
+import { useCart } from "../../context/CartContext";
 
 // Mock product data - Replace with API call
 const productData = {
     1: {
         id: 1,
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&h=600&fit=crop",
+        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=600&fit=crop",
         images: [
-            "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&h=600&fit=crop",
-            "https://images.unsplash.com/photo-1589998059171-988d887df646?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&h=600&fit=crop",
             "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=600&fit=crop",
         ],
         title: "Gray's Anatomy (42nd Edition)",
@@ -44,7 +45,7 @@ const productData = {
 const relatedProducts = [
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop",
         title: "Professional Stethoscope",
         description: "Dual head, premium quality",
         price: 15000,
@@ -54,7 +55,7 @@ const relatedProducts = [
     },
     {
         id: 4,
-        image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&h=300&fit=crop",
         title: "Dissection Kit (12-piece)",
         description: "Complete anatomy tools",
         price: 12000,
@@ -64,7 +65,7 @@ const relatedProducts = [
     },
     {
         id: 8,
-        image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=300&fit=crop",
+        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop",
         title: "Study Flashcards Set",
         description: "500+ medical terms",
         price: 5500,
@@ -77,6 +78,7 @@ const relatedProducts = [
 export default function ProductDetail() {
     const router = useRouter();
     const { id } = router.query;
+    const { addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
     const [selectedImage, setSelectedImage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -86,8 +88,9 @@ export default function ProductDetail() {
     const formatPrice = (amount) => `₦${amount.toLocaleString()}`;
 
     const handleAddToCart = () => {
-        // TODO: Implement cart functionality
-        alert(`Added ${quantity} item(s) to cart!`);
+        addToCart(product, quantity);
+        alert(`✅ Added ${quantity} ${product.title} to cart!`);
+        setQuantity(1); // Reset quantity after adding
     };
 
     if (isLoading) {

@@ -5,9 +5,11 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Input from "../../components/Input";
+import { useCart } from "../../context/CartContext";
 
 export default function Login() {
     const router = useRouter();
+    const { login } = useCart();
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
@@ -35,8 +37,14 @@ export default function Login() {
         setIsLoading(true);
         // TODO: Implement actual login API call
         setTimeout(() => {
+            // Demo login - store user data
+            login({
+                email: formData.email,
+                name: formData.email.split('@')[0]
+            });
             setIsLoading(false);
-            router.push("/account/orders");
+            alert("✅ Login successful!");
+            router.push("/");
         }, 1500);
     };
 
