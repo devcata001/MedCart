@@ -258,13 +258,32 @@ export default function ProductDetail() {
     const { addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
     const [selectedImage, setSelectedImage] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     // Get product data
     const product = productData[id];
     const formatPrice = (amount) => `₦${amount.toLocaleString()}`;
 
-    // Handle product not found
+    // Wait for router to be ready
+    React.useEffect(() => {
+        if (router.isReady) {
+            setIsLoading(false);
+        }
+    }, [router.isReady]);
+
+    // Handle product not found or loading
+    if (isLoading || !router.isReady) {
+        return (
+            <div className="bg-gray-50 min-h-screen flex flex-col">
+                <Header />
+                <main className="flex-1 max-w-7xl mx-auto px-4 md:px-8 py-8 w-full">
+                    <ProductDetailSkeleton />
+                </main>
+                <Footer />
+            </div>
+        );
+    }
+
     if (!product) {
         return (
             <div className="bg-gray-50 min-h-screen flex flex-col">
