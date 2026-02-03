@@ -125,7 +125,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="flex-1 w-full flex justify-center">
-                            <img src="https://img.freepik.com/free-photo/stethoscope-with-blank-paper-white-pills-pastel-green-background_23-2148213975.jpg?semt=ais_hybrid&w=740&q=80" alt="Medical supplies" className="rounded-xl shadow-lg object-contain w-full max-w-xs md:max-w-md" />
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop" alt="Medical supplies" className="rounded-xl shadow-lg object-contain w-full max-w-xs md:max-w-md" />
                         </div>
                     </div>
                 </section>
