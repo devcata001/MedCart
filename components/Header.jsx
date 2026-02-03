@@ -1,11 +1,24 @@
 // components/Header.jsx
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useCart } from "../context/CartContext";
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
     const { getCartCount } = useCart();
+    const router = useRouter();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/shop?search=${encodeURIComponent(searchQuery)}`);
+            setSearchOpen(false);
+            setSearchQuery("");
+        }
+    };
 
     return (
         <header className="bg-white shadow-sm sticky top-0 z-30">
@@ -34,7 +47,11 @@ export default function Header() {
                 {/* Right Side Actions */}
                 <div className="flex items-center gap-2 md:gap-4">
                     {/* Search Icon */}
-                    <button className="p-2 hover:bg-gray-100 rounded-full transition">
+                    <button
+                        onClick={() => setSearchOpen(true)}
+                        className="p-2 hover:bg-gray-100 rounded-full transition"
+                        aria-label="Search"
+                    >
                         <svg className="w-5 h-5 md:w-6 md:h-6 text-gray-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                             <circle cx="11" cy="11" r="8" />
                             <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -83,6 +100,44 @@ export default function Header() {
                     </button>
                 </div>
             </div>
+
+            {/* Search Modal */}
+            {searchOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-start justify-center pt-20">
+                    <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl mx-4">
+                        <form onSubmit={handleSearch} className="p-4 md:p-6">
+                            <div className="flex items-center gap-3">
+                                <input
+                                    type="text"
+                                    placeholder="Search products, books, equipment..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                                    autoFocus
+                                />
+                                <button
+                                    type="submit"
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
+                                >
+                                    Search
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setSearchOpen(false);
+                                        setSearchQuery("");
+                                    }}
+                                    className="px-3 py-2 text-gray-600 hover:text-gray-900 transition"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (

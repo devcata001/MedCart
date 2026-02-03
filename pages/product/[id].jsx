@@ -1,5 +1,6 @@
 // pages/product/[id].jsx
 import React, { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -14,11 +15,11 @@ import { useCart } from "../../context/CartContext";
 const productData = {
     1: {
         id: 1,
-        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=600&fit=crop",
+        image: "https://placehold.co/600x600?text=Grays+Anatomy",
         images: [
-            "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=600&fit=crop",
-            "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&h=600&fit=crop",
-            "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=600&fit=crop",
+            "https://placehold.co/600x600?text=Grays+Anatomy+1",
+            "https://placehold.co/600x600?text=Grays+Anatomy+2",
+            "https://placehold.co/600x600?text=Grays+Anatomy+3",
         ],
         title: "Gray's Anatomy (42nd Edition)",
         description: "The world's most trusted anatomy textbook for over 160 years. Comprehensive coverage of human anatomy with detailed illustrations.",
@@ -40,12 +41,188 @@ const productData = {
         medTip: "This book is essential for preclinical students. Focus on understanding anatomical relationships rather than memorizing every detail. Use it alongside dissection and practical sessions.",
         verified: true,
     },
+    2: {
+        id: 2,
+        image: "https://placehold.co/600x600?text=Stethoscope",
+        images: [
+            "https://placehold.co/600x600?text=Stethoscope+1",
+            "https://placehold.co/600x600?text=Stethoscope+2",
+        ],
+        title: "Professional Stethoscope",
+        description: "Dual head, premium quality medical stethoscope for accurate auscultation.",
+        longDescription: "A high-quality dual-head stethoscope designed for clinical professionals. Features acoustic precision tubing, comfortable earpieces, and a durable diaphragm for clear sound transmission. Perfect for both preclinical and clinical students.",
+        price: 15000,
+        rating: 5,
+        reviews: 189,
+        inStock: true,
+        category: "Clinical Essentials",
+        tag: "recommended",
+        features: [
+            "Dual head design (diaphragm & bell)",
+            "Acoustic precision tubing",
+            "Comfortable ear pieces",
+            "Durable stainless steel",
+            "Ideal for all auscultation needs",
+        ],
+        medTip: "Learn proper stethoscope technique early. Practice distinguishing between normal and abnormal lung and heart sounds with supervision from experienced clinicians.",
+        verified: true,
+    },
+    3: {
+        id: 3,
+        image: "https://placehold.co/600x600?text=Lab+Coat",
+        images: [
+            "https://placehold.co/600x600?text=Lab+Coat+1",
+            "https://placehold.co/600x600?text=Lab+Coat+2",
+        ],
+        title: "Premium Lab Coat",
+        description: "100% cotton, all sizes, professional medical apparel.",
+        longDescription: "High-quality 100% cotton lab coat offering comfort and durability for clinical settings. Features multiple pockets for instrument storage, reinforced stitching, and a professional fit. Available in all standard sizes.",
+        price: 8500,
+        rating: 4,
+        reviews: 156,
+        inStock: true,
+        category: "Clinical Essentials",
+        tag: "medPick",
+        features: [
+            "100% premium cotton",
+            "Multiple pockets",
+            "Reinforced stitching",
+            "Professional fit",
+            "All sizes available",
+        ],
+        medTip: "Invest in 2-3 good quality lab coats for rotation. Keep them clean and pressed for a professional appearance during clinical rotations.",
+        verified: true,
+    },
+    4: {
+        id: 4,
+        image: "https://placehold.co/600x600?text=Dissection+Kit",
+        images: [
+            "https://placehold.co/600x600?text=Dissection+1",
+            "https://placehold.co/600x600?text=Dissection+2",
+        ],
+        title: "Dissection Kit (12-piece)",
+        description: "Complete anatomy tools for practical dissection sessions.",
+        longDescription: "A comprehensive 12-piece dissection kit containing all essential surgical instruments. Includes scalpels, forceps, scissors, and probes. Perfect for anatomy lab work and dissection practice.",
+        price: 12000,
+        rating: 5,
+        reviews: 201,
+        inStock: true,
+        category: "Clinical Essentials",
+        tag: "recommended",
+        features: [
+            "12 essential surgical instruments",
+            "Stainless steel construction",
+            "Sharp and precise cutting edges",
+            "Comfortable handles",
+            "Professional grade quality",
+        ],
+        medTip: "Handle instruments with respect. Always keep your tools sharp and clean. Practice proper dissection technique to minimize tissue damage.",
+        verified: true,
+    },
+    5: {
+        id: 5,
+        image: "https://placehold.co/600x600?text=Vitamin+D3",
+        images: [
+            "https://placehold.co/600x600?text=Vitamin+D3",
+        ],
+        title: "Vitamin D3 Supplement",
+        description: "Supports immune health and bone strength.",
+        longDescription: "High-potency Vitamin D3 supplement supporting immune function and calcium absorption. Especially important for medical students with limited sun exposure due to study schedules.",
+        price: 4500,
+        rating: 4.5,
+        reviews: 89,
+        inStock: true,
+        category: "Supplements",
+        tag: "medPick",
+        features: [
+            "High potency formula",
+            "Supports immune function",
+            "Enhances calcium absorption",
+            "Easy-to-swallow capsules",
+            "Doctor recommended",
+        ],
+        medTip: "Vitamin D deficiency is common among students. Check your levels regularly and supplement if needed for better immunity and mood.",
+        verified: true,
+    },
+    6: {
+        id: 6,
+        image: "https://placehold.co/600x600?text=Vitamin+D3",
+        images: [
+            "https://placehold.co/600x600?text=Vitamin+D3",
+        ],
+        title: "Focus & Memory Capsules",
+        description: "Natural nootropic blend for mental clarity.",
+        longDescription: "Natural nootropic blend designed to enhance focus, memory, and mental clarity. Perfect for intense study sessions and clinical exams.",
+        price: 6500,
+        rating: 4,
+        reviews: 124,
+        inStock: true,
+        category: "Supplements",
+        features: [
+            "Natural herbal ingredients",
+            "Enhances focus and concentration",
+            "Improves memory retention",
+            "No artificial additives",
+            "Safe for long-term use",
+        ],
+        medTip: "Combine supplements with adequate sleep and exercise. No supplement can replace proper study techniques and rest.",
+        verified: true,
+    },
+    7: {
+        id: 7,
+        image: "https://placehold.co/600x600?text=Stress+Relief+Tea",
+        images: [
+            "https://placehold.co/600x600?text=Stress+Relief+Tea",
+        ],
+        title: "Stress Relief Tea",
+        description: "Calming herbal blend for relaxation.",
+        longDescription: "Premium herbal tea blend specially formulated to reduce stress and anxiety. Contains chamomile, lavender, and lemon balm.",
+        price: 3200,
+        rating: 4.5,
+        reviews: 67,
+        inStock: true,
+        category: "Wellness",
+        features: [
+            "100% natural herbs",
+            "Calming blend",
+            "No caffeine",
+            "Sleep-promoting",
+            "Organic certified",
+        ],
+        medTip: "Take time for self-care. A warm cup of herbal tea can be a great way to unwind after long study sessions or clinical shifts.",
+        verified: true,
+    },
+    8: {
+        id: 8,
+        image: "https://placehold.co/600x600?text=Focus+Capsules",
+        images: [
+            "https://placehold.co/600x600?text=Focus+Capsules",
+        ],
+        title: "Study Flashcards Set",
+        description: "500+ medical terms and definitions.",
+        longDescription: "Comprehensive flashcard set containing over 500 medical terms, definitions, and clinical correlations. Perfect for active recall studying.",
+        price: 5500,
+        rating: 5,
+        reviews: 178,
+        inStock: true,
+        category: "Study Tools",
+        tag: "medPick",
+        features: [
+            "500+ medical terms",
+            "Detailed definitions",
+            "Clinical correlations",
+            "Durable cards",
+            "Indexed by system",
+        ],
+        medTip: "Use flashcards for spaced repetition learning. Review regularly and test yourself frequently for better retention.",
+        verified: true,
+    },
 };
 
 const relatedProducts = [
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop",
+        image: "https://placehold.co/400x300?text=Stethoscope",
         title: "Professional Stethoscope",
         description: "Dual head, premium quality",
         price: 15000,
@@ -55,7 +232,7 @@ const relatedProducts = [
     },
     {
         id: 4,
-        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&h=300&fit=crop",
+        image: "https://placehold.co/400x300?text=Dissection+Kit",
         title: "Dissection Kit (12-piece)",
         description: "Complete anatomy tools",
         price: 12000,
@@ -65,7 +242,7 @@ const relatedProducts = [
     },
     {
         id: 8,
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop",
+        image: "https://placehold.co/400x300?text=Flashcards",
         title: "Study Flashcards Set",
         description: "500+ medical terms",
         price: 5500,
@@ -84,8 +261,29 @@ export default function ProductDetail() {
     const [isLoading, setIsLoading] = useState(false);
 
     // Get product data
-    const product = productData[id] || productData[1];
+    const product = productData[id];
     const formatPrice = (amount) => `₦${amount.toLocaleString()}`;
+
+    // Handle product not found
+    if (!product) {
+        return (
+            <div className="bg-gray-50 min-h-screen flex flex-col">
+                <Header />
+                <main className="flex-1 flex items-center justify-center max-w-7xl mx-auto px-4 md:px-8 py-8 w-full">
+                    <div className="text-center">
+                        <h1 className="text-4xl font-bold text-gray-900 mb-4">Product Not Found</h1>
+                        <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
+                        <Link href="/shop">
+                            <button className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+                                Back to Shop
+                            </button>
+                        </Link>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     const handleAddToCart = () => {
         addToCart(product, quantity);

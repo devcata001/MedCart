@@ -12,7 +12,7 @@ import CategoryCard from "../components/CategoryCard";
 const products = [
     {
         id: 1,
-        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop",
+        image: "https://placehold.co/400x300?text=Grays+Anatomy",
         title: "Gray's Anatomy (42nd Edition)",
         description: "Essential anatomy reference",
         price: 28500,
@@ -23,7 +23,7 @@ const products = [
     },
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=400&h=300&fit=crop",
+        image: "https://placehold.co/400x300?text=Stethoscope",
         title: "Professional Stethoscope",
         description: "Dual head, premium quality",
         price: 15000,
@@ -33,7 +33,7 @@ const products = [
     },
     {
         id: 3,
-        image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=300&fit=crop",
+        image: "https://placehold.co/400x300?text=Lab+Coat",
         title: "Premium Lab Coat",
         description: "100% cotton, all sizes",
         price: 8500,
@@ -43,7 +43,7 @@ const products = [
     },
     {
         id: 4,
-        image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400&h=300&fit=crop",
+        image: "https://placehold.co/400x300?text=Dissection+Kit",
         title: "Dissection Kit (12-piece)",
         description: "Complete anatomy tools",
         price: 12000,
@@ -85,19 +85,19 @@ const testimonials = [
         text: "MedCart saved me so much money on textbooks! The quality is excellent and delivery was super fast. Highly recommend to all med students.",
         name: "Chioma Okafor",
         details: "University of Lagos",
-        image: "https://img.freepik.com/premium-photo/portrait-smiling-female-doctor-wearing-white-coat-with-stethoscope-hospital-office_255667-23420.jpg?semt=ais_hybrid&w=740&q=80",
+        image: "https://i.pravatar.cc/400?img=1",
     },
     {
         text: "Best place to get lab equipment. The dissection kit I bought was top quality and came with everything I needed for anatomy class.",
         name: "Ahmed Bello",
         details: "Ladoke Akintola University of Technology",
-        image: "https://media.istockphoto.com/id/638667804/photo/confident-medical-student-before-class.jpg?s=612x612&w=0&k=20&c=B4Qcd-u6S0109gHkDCuioQ_xyNT5LsXLoJoBLRE9cHU=",
+        image: "https://i.pravatar.cc/400?img=2",
     },
     {
         text: "The student discount program is amazing! I've saved over ₦50,000 on my textbooks this semester. Customer service is also very responsive.",
         name: "Adekunle Johnson",
         details: "University of Ibadan",
-        image: "https://media.istockphoto.com/id/1434513602/photo/medical-student-poses-for-camera.jpg?s=612x612&w=0&k=20&c=3Kc0mywYUoMIqhabkD1iBSXwj-ZO-uewxAdl_Tt_voI=",
+        image: "https://i.pravatar.cc/400?img=3",
     },
 ];
 
@@ -125,7 +125,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="flex-1 w-full flex justify-center">
-                            <img src="https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=500&h=600&fit=crop" alt="Stack of medical books" className="rounded-xl shadow-lg object-contain w-full max-w-xs md:max-w-md" />
+                            <img src="https://img.freepik.com/free-photo/stethoscope-with-blank-paper-white-pills-pastel-green-background_23-2148213975.jpg?semt=ais_hybrid&w=740&q=80" alt="Medical supplies" className="rounded-xl shadow-lg object-contain w-full max-w-xs md:max-w-md" />
                         </div>
                     </div>
                 </section>
